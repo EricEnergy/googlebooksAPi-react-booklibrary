@@ -53,7 +53,7 @@ function Books() {
         <Row>
           <Col size="md-6">
             <Jumbotron>
-              <h1>What Books Should I Read?</h1>
+              <h1>Search Google Books here.</h1>
             </Jumbotron>
             <Searchbar></Searchbar>
           </Col>

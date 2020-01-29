@@ -19,7 +19,7 @@ export default {
   },
 
   searchBook: function(dude) {
-    return axios.get(`/api/search/library?q=${dude}`);
+    return axios.get(`/api/books/library?q=${dude}`);
   },
   
 };

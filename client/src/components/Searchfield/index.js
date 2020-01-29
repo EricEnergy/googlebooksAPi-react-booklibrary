@@ -7,14 +7,14 @@ import book from "./booky.png"
 export default function Search() {
   const [searchTerm, setSearchTerm] = useState("");
   const [products, setProducts] = useState([]);
-  
+
   function productSearch(e) {
     e.preventDefault();
     console.log(searchTerm)
     API.searchBook(searchTerm)
-    .then(res => {
-      setProducts(res.data);
-    });
+      .then(res => {
+        setProducts(res.data);
+      });
     console.log(products)
   }
 
@@ -30,7 +30,7 @@ export default function Search() {
       image: selectName[0].volumeInfo.imageLinks.smallThumbnail,
       synopsis: selectName[0].volumeInfo.description
     })
-     console.log(selectName)
+    console.log(selectName)
   }
 
   // title: { type: String, required: true },
@@ -41,9 +41,11 @@ export default function Search() {
 
   function beast(prod) {
     console.log(prod)
-      if(prod.volumeInfo.imageLinks.smallThumbnail === "") {
-return(book)
-      } else { return(prod.volumeInfo.imageLinks.smallThumbnail)}
+    if (!prod.volumeInfo.imageLinks) {
+      return (book)
+    } else { 
+      return (prod.volumeInfo.imageLinks.smallThumbnail) 
+    }
   }
 
   return (
@@ -53,22 +55,23 @@ return(book)
         <label htmlFor="searchBar"> Search </label>
         <button className="btn btn-primary" style={{ marginLeft: "20px" }} type="submit" onClick={(e) => productSearch(e)}>Search</button>
       </form>
-            <List>
-              {products.map(prod => (
-              //  console.log(prod.volumeInfo.imageLinks.smallThumbnail),
-                <ListItem key={prod.id}>
-                  <strong>
-                    <img  alt="logo" style={{ width: 50, height: 50, overflow: 'hidden', resizeMode: 'contain' }} src={beast(prod)}></img>  {prod.volumeInfo.title}
-                  </strong>
-                  <br />
-                  <br />
-                  <div style={{ display: "flex" }}>
-                    <button className="btn btn-primary" style={{ marginLeft: "auto" }} onClick={() => myList(prod.id)}> Add to cart</button>
-                  </div>
-                </ListItem>
-              ))}
-            </List>
-         
+      <br></br>
+      <List>
+        {products.map(prod => (
+          //  console.log(prod.volumeInfo.imageLinks.smallThumbnail),
+          <ListItem key={prod.id}>
+            <strong>
+              <img alt="logo" style={{ width: 50, height: 50, overflow: 'hidden', resizeMode: 'contain' }} src={beast(prod)}></img>  {prod.volumeInfo.title}
+            </strong>
+            <br />
+            <br />
+            <div style={{ display: "flex" }}>
+              <button className="btn btn-primary" style={{ marginLeft: "auto" }} onClick={() => myList(prod.id)}> Add to List</button>
+            </div>
+          </ListItem>
+        ))}
+      </List>
+
     </section>
   );
 }

@@ -2,6 +2,11 @@ const router = require("express").Router();
 const booksController = require("../../controllers/booksController");
 
 // Matches with "/api/books"
+
+router
+.route("/library")
+.get(booksController.trytofindthis)
+
 router.route("/")
   .get(booksController.findAll)
   .post(booksController.create);
@@ -13,5 +18,6 @@ router
   .put(booksController.update)
   .delete(booksController.remove);
 
+  
 
 module.exports = router;
