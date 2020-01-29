@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import API from '../../utils/API'
 import { List, ListItem } from "../List2";
 import book from "./booky.png"
+import Jumbotron from "../Jumbotron";
 
 
 export default function Search() {
@@ -27,7 +28,7 @@ export default function Search() {
       id: selectName[0].id,
       title: selectName[0].volumeInfo.title,
       author: selectName[0].volumeInfo.authors[0],
-      image: selectName[0].volumeInfo.imageLinks.smallThumbnail,
+      image: selectName[0].volumeInfo.imageLinks.thumbnail,
       synopsis: selectName[0].volumeInfo.description
     })
     console.log(selectName)
@@ -50,12 +51,18 @@ export default function Search() {
 
   return (
     <section>
+      <Jumbotron>
+        <h3>Book Search</h3>
       <form >
         <input id="searchBar" name="searchBar" type="search" onChange={(e) => setSearchTerm(e.target.value)} />
         <label htmlFor="searchBar"> Search </label>
         <button className="btn btn-primary" style={{ marginLeft: "20px" }} type="submit" onClick={(e) => productSearch(e)}>Search</button>
       </form>
+      </Jumbotron>
       <br></br>
+      <div>
+      <h1>Results</h1>
+
       <List>
         {products.map(prod => (
           //  console.log(prod.volumeInfo.imageLinks.smallThumbnail),
@@ -71,7 +78,7 @@ export default function Search() {
           </ListItem>
         ))}
       </List>
-
+      </div>
     </section>
   );
 }

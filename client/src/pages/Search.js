@@ -6,7 +6,7 @@ import { Link } from "react-router-dom";
 import { Col, Row, Container } from "../components/Grid";
 import { List, ListItem } from "../components/List";
 import { Input, TextArea, FormBtn } from "../components/Form";
-import book from "../components/Searchfield/booky.png"
+import Searchbar from "../components/Searchfield";
 
 function Books() {
   const [books, setBooks] = useState([])
@@ -18,12 +18,11 @@ function Books() {
 
   function loadBooks() {
     API.getBooks()
-      .then(res =>
+      .then(res => 
         setBooks(res.data)
       )
       .catch(err => console.log(err));
   };
-
 
   function deleteBook(id) {
     API.deleteBook(id)
@@ -33,7 +32,7 @@ function Books() {
 
   function handleInputChange(event) {
     const { name, value } = event.target;
-    setFormObject({ ...formObject, [name]: value })
+    setFormObject({...formObject, [name]: value})
   };
 
   function handleFormSubmit(event) {
@@ -49,42 +48,25 @@ function Books() {
     }
   };
 
-  return (
-    <Container fluid>
-      <Row>
+    return (
+      <Container fluid>
+        <Row>
         <Col size="md-1">
         </Col>
-        <Col size="md-10">
-          <Jumbotron>
-            <h1>(React) Google Books Search</h1>
-            <h4>Search for and Save Books of Interest</h4>
-          </Jumbotron>
-          {books.length ? (
-            <List>
-              {books.map(book => (
-                console.log(book),
-                <ListItem key={book._id}>
-                  <DeleteBtn onClick={() => deleteBook(book._id)} />
-                  <strong>
-                    <img alt="logo" style={{ width: 50, height: 50, overflow: 'hidden', resizeMode: 'contain' }} src={book.image}></img>
-                    <p>Book Title: {book.title}</p>
-                    <p>By: {book.author}</p>
-                    <p>Description: {book.synopsis}</p>
 
-                  </strong>
-                </ListItem>
-              ))}
-            </List>
-          ) : (
-              <h3>No Results to Display</h3>
-            )}
+          <Col size="md-10">
+            <Jumbotron>
+              <h1>(React) Google Books Search</h1>
+              <h4>Search for and Save Books of Interest</h4>
+            </Jumbotron>
+            <Searchbar></Searchbar>
+          </Col>
+          <Col size="md-1">
         </Col>
-        <Col size="md-1">
-        </Col>
-      </Row>
-    </Container>
-  );
-}
+        </Row>
+      </Container>
+    );
+  }
 
 
 export default Books;
