@@ -62,7 +62,6 @@ function Books() {
           {books.length ? (
             <List>
               {books.map(book => (
-                console.log(book),
                 <ListItem key={book._id}>
                   <DeleteBtn onClick={() => deleteBook(book._id)} />
                   <strong>

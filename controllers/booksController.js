@@ -5,7 +5,6 @@ const axios = require("axios");
 module.exports = {
 
   trytofindthis: function(req, res) {
-    console.log(req.query.q)
     if (!req.query.q) {
       req.query.q = "battleroyal";
     }

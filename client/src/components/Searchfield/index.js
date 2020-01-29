@@ -11,17 +11,14 @@ export default function Search() {
 
   function productSearch(e) {
     e.preventDefault();
-    console.log(searchTerm)
     API.searchBook(searchTerm)
       .then(res => {
         setProducts(res.data);
       });
-    console.log(products)
   }
 
 
   function myList(value) {
-    console.log(value)
     var selectName = products.filter(a => a.id === value)
 
     API.saveBook({
@@ -31,7 +28,6 @@ export default function Search() {
       image: selectName[0].volumeInfo.imageLinks.thumbnail,
       synopsis: selectName[0].volumeInfo.description
     })
-    console.log(selectName)
   }
 
   // title: { type: String, required: true },
